@@ -1,19 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-// import "./nav.css";
+import "./Nav.css";
 //////////////
 export default function NavBar({ token, setToken }) {
-  // const history=useHistory()
   return (
     <div>
       {token ? (
         <ul>
          
           
-           
+         
           <li>
-            
+            <Link
+              onClick={() => {
+                setToken("");
+              }}
+              to="/logIn"
+            >
+              log out
+            </Link>
             {/* <button onClick={()=>{setToken("") 
           history.push("/logIn") }}>log out</button> */}
           </li>
@@ -21,10 +26,15 @@ export default function NavBar({ token, setToken }) {
       ) : (
         <ul>
         <li>
-        <Link to="/logIn">logIn</Link>
+        <Link to="/SignUp">SinUp</Link>
       </li>
           <li>
-            <Link to="/SinUp">SinUp</Link>
+            <Link to="/logIn">logIn</Link>
+          </li>
+         
+
+          <li>
+            <Link to="/movies">movies</Link>
           </li>
         </ul>
       )}

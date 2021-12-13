@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 
-//
 export default function SinUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,15 +17,18 @@ export default function SinUp() {
     setPass(e.target.value);
   };
   const addUser = async () => {
-    const res = await axios.post("http://localhost:5000/signUp", {
+    const res = await axios.post("http://localhost:5000/sinUp", {
       name,
       email,
       pass,
     });
-    
+    if (res.status == 201) {
+      history.push("/logIn");
+    }
   };
   return (
     <div>
+     <h1>SignUp</h1>
       <input
         onChange={(e) => {
           changeName(e);
@@ -55,6 +57,7 @@ export default function SinUp() {
         type="pass"
         placeholder="pass"
       /> 
+            <br/>
             <br/>
 
 
