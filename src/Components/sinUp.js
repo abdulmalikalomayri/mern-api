@@ -29,7 +29,10 @@ export default function SinUp() {
   return (
     <div>
      <h1>SignUp</h1>
-      <input
+     <div className="text-center">
+     <form className="form-signin">
+     <label for="name">Name</label>
+      <input className="inputname"
         onChange={(e) => {
           changeName(e);
         }}
@@ -68,6 +71,8 @@ export default function SinUp() {
       >
         sinUp
       </button>
+      </form>
+    </div>
     </div>
   );
 }

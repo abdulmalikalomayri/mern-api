@@ -4,6 +4,7 @@ import LogIn from "./Components/logIn";
 import SinUp from "./Components/sinUp";
 import NavBar from "./Components/NavBar";
 import { Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 export default function App() {
   const [token, setToken] = useState("");
 

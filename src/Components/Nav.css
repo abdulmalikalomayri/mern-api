@@ -1,9 +1,18 @@
+:root {
+    --main-color: #00ADB5;
+    --main-color-dark: #00888e;
+    --main-white: #eeeeee;
+}
+
+.navbar {
+    background-color: #333333;
+}
+
 ul{
 list-style-type: none;
 margin: 0%;
 padding: 0%;
 overflow: hidden;
-background-color: mediumaquamarine;
 }
 
 li{
@@ -12,10 +21,17 @@ li{
 
 li a{
     display: block;
-    color: mediumpurple;
+    color: var(--main-color);
     text-align: center;
     padding: 14px;
-    text-decoration: navy;
+    text-decoration: none;
 }
 
-
+li a:hover{
+    color: var(--main-color-dark);
+   
+}
+.navbar-brand {
+    font-weight: bold;
+    color: var(--main-white)
+}
