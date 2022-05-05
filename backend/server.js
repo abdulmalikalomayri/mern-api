@@ -9,6 +9,11 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+// so app.get method has two pram 1- is the route 2- is the response 
+app.get('/api/goals', (req, res) => {
+  res.json({ message: 'Get Goals'})
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
