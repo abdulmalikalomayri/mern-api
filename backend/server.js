@@ -3,13 +3,21 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 const app = express()
+const { errorHandler } = require('./middleware/errorMiddleware')
 const port = 5000
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: false}))
+
+// defineds a routes
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
 app.use('/api/goals', require('./routes/goalRoutes'))
+
+// use the middleware error handler 
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`)
