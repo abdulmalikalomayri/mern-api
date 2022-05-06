@@ -3,17 +3,15 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
 const app = express()
-const port = process.env.PORT || 5000
+const port = 5000
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-// so app.get method has two pram 1- is the route 2- is the response 
-app.get('/api/goals', (req, res) => {
-  res.json({ message: 'Get Goals'})
-})
+app.use('/api/goals', require('./routes/goalRoutes'))
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`server running on port ${port}`)
 })
+// app.use('/api/goals', require('./routes/goalRoutes'))
