@@ -1,6 +1,7 @@
 
 // below code line is like import express to use node express package and featuers
 const express = require('express')
+// import controllers
 const { getGoals, setGoal, updateGoal, deleteGoal } = require('../controllers/goalController')
 const router = express.Router()
 
