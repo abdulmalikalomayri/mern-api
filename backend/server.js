@@ -1,3 +1,4 @@
+// to start the server just run in cmd npm run server
 // here we defined the server configuration and the port, etc.
 // keep in mind that the server.js is the starting point it's like th index or main method
 const express = require('express')
