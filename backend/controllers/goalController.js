@@ -65,6 +65,17 @@ const updateGoal = asyncHandler (async (req, res) => {
     res.status(200).json(updatedGoal)
 })
 
+const showGoal = asyncHandler(async (req, res) => {
+    // Get id from praram 
+    const goal = await Goal.findById(req.params.id)
+
+    if(!goal) {
+
+        throw new Error("Wrong ID!")
+    }
+    res.status(200).json(goal)
+} )
+
 /**
  * @route ./api/goal/:id
  * @desc delete goal
@@ -87,5 +98,5 @@ const deleteGoal = asyncHandler (async (req, res) => {
 })
 
   module.exports = {
-      getGoals, setGoal, updateGoal, deleteGoal,
+      getGoals, setGoal, updateGoal, deleteGoal, showGoal
   }
