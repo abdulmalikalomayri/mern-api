@@ -23,6 +23,8 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+// create a login url https get for page and post for sending login details 
+
 // prefix for goals route
 app.use('/api/goals', require('./routes/goalRoutes'))
 
@@ -34,3 +36,12 @@ app.listen(port, () => {
   console.log(`server running on port ${port}`)
 })
 // app.use('/api/goals', require('./routes/goalRoutes'))
+
+// for deps 
+// npm i -D nodemon 
+// npm i express express-handlebars 
+// handlebars is html that a pass variable
+// express-session for login session
+// mongoose for installing monogodb
+// passport auth 
+// passport-local username and password  auth 
