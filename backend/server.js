@@ -28,6 +28,8 @@ app.get('/', (req, res) => {
 // prefix for goals route
 app.use('/api/goals', require('./routes/goalRoutes'))
 
+app.use('/api/users', require('./routes/userRoutes'))
+
 // use the middleware error handler 
 app.use(errorHandler)
 
