@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 
 const goalSchema = mongoose.Schema({
-    // for every user has a goals
+    // handle connection between user & goals
+    //for every user has a goals
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
