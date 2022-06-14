@@ -7,10 +7,10 @@
 // below code line is like import express to use node express package and featuers
 const express = require('express')
 const router = express.Router()
+const { registerUser } = require('../controllers/userController');
 
 // controller handle register  
-const { registerUser } = require('../controllers/userController')
-
-router.post('/', registerUser)
+ 
+router.route('/').get(registerUser);
 
 module.exports = router

@@ -26,9 +26,9 @@ app.get('/', (req, res) => {
 // create a login url https get for page and post for sending login details 
 
 // prefix for goals route
-app.use('/api/goals', require('./routes/goalRoutes'))
+app.use('/api/goals', require('./routes/goalRoutes'));
 
-app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/users', require('./routes/userRoutes'));
 
 // use the middleware error handler 
 app.use(errorHandler)
