@@ -8,12 +8,14 @@
 const express = require('express');
 const router = express.Router();
 const { registerUser, loginUser, getMe } = require('../controllers/userController');
+// add auth middleware 
+const { protect } = require('../middleware/authMiddleware');
 
 // controller handle register  
 // 
 router.post('/', registerUser);
 router.post('/login', loginUser);
-router.get('/me', getMe)
+router.get('/me',protect ,getMe);
 
 // router.route('/').post()
 
