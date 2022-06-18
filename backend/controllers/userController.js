@@ -96,9 +96,10 @@ const registerUser = asyncHandler(async (req, res) => {
 } );
 
 /**
+ * for test middlware
  * @desc Get user data
  * @route Get /api/users/login/me
- * @access Public 
+ * @access Private 
  */
  const getMe = asyncHandler( async (req, res) => {
     const users = await User.find({})
