@@ -1,8 +1,8 @@
-const asyncHandler = require('express-async-handler')
+const asyncHandler = require('express-async-handler');
 
 // import the db 
-const Goal = require('../models/goalModel')
-
+const Goal = require('../models/goalModel');
+const User = require('../models/userModel');
 /**
  * @desc Get All 
  * @route ./api/goals
@@ -11,11 +11,10 @@ const Goal = require('../models/goalModel')
  * @param {*} res 
 */
 const getGoals = asyncHandler(async (req, res) => {
-    // select * 
-    const goals = await Goal.find({})
-
+    const goals = await Goal.find({ user: req.user.id })
+  
     res.status(200).json(goals)
-} )
+  })
 
 /**
  * @desc Create  
@@ -32,7 +31,9 @@ const setGoal = asyncHandler( async (req, res) => {
     }
 
     const goal = await Goal.create({
-        text: req.body.text
+        text: req.body.text,
+        // add auth to user goals
+        user: req.user.id,
     })
      res.status(200).json(goal)
 
@@ -57,6 +58,18 @@ const updateGoal = asyncHandler (async (req, res) => {
         res.status(400)
 
         throw new Error('empty text body!')
+    }
+
+    // Validate User
+    if(!req.user) {
+        res.status(401);
+        throw new Error('User not found');
+    }
+
+    // validate user & goal
+    if(goal.user.toString() !== req.user.id){
+        res.status(401);
+        throw new Error('User not auth');
     }
 
     const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
@@ -92,9 +105,22 @@ const deleteGoal = asyncHandler (async (req, res) => {
     if(!goal) {
         throw new Error(`ID:${inputId} not found`)
     }
+ 
+    // Validate User
+    if(!req.user) {
+        res.status(401);
+        throw new Error('User not found');
+    }
+
+    // validate user & goal
+    if(goal.user.toString() !== req.user.id){
+        res.status(401);
+        throw new Error('User not auth');
+    }
+    await goal.remove();
     // action
-    deleteGoal = await Goal.findByIdAndDelete(inputId)
-    res.status(200).json(deleteGoal)
+    // deleteGoal = await Goal.findByIdAndDelete(inputId)
+    res.status(200).json({ id: req.params.id })
 })
 
   module.exports = {
