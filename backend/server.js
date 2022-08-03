@@ -30,6 +30,8 @@ app.use('/api/goals', require('./routes/goalRoutes'));
 
 app.use('/api/users', require('./routes/userRoutes'));
 
+app.use('/api/users', require('./routes/userTasks'));
+
 // use the middleware error handler 
 app.use(errorHandler)
 
