@@ -11,9 +11,9 @@ const Task = require('../models/taskModel');
  * @param {*} res 
 */
 const getTasks = asyncHandler(async (req, res) => {
-    const Tasks = await Task.find({ user: req.user.id })
+    const task = await task.find({ user: req.user.id })
   
-    res.status(200).json(Tasks)
+    res.status(200).json(tasks)
   })
 
 /**
@@ -30,12 +30,12 @@ const setTask = asyncHandler( async (req, res) => {
         throw new Error('empty text body!')
     }
 
-    const Task = await Task.create({
+    const task = await Task.create({
         text: req.body.text,
         // add auth to user Tasks
         user: req.user.id,
     })
-     res.status(200).json(Task)
+     res.status(200).json(task)
 
 })
 
@@ -47,9 +47,9 @@ const setTask = asyncHandler( async (req, res) => {
  * @param {*} res 
  */
 const updateTask = asyncHandler (async (req, res) => {
-    const Task = await Task.findById(req.params.id)
+    const task = await Task.findById(req.params.id)
 
-    if(!Task) {
+    if(!task) {
         res.status(400)
          
         throw new Error("Task Id not found ")
@@ -67,7 +67,7 @@ const updateTask = asyncHandler (async (req, res) => {
     }
 
     // validate user & Task
-    if(Task.user.toString() !== req.user.id){
+    if(task.user.toString() !== req.user.id){
         res.status(401);
         throw new Error('User not auth');
     }
@@ -80,13 +80,13 @@ const updateTask = asyncHandler (async (req, res) => {
 
 const showTask = asyncHandler(async (req, res) => {
     // Get id from praram 
-    const Task = await Task.findById(req.params.id)
+    const task = await Task.findById(req.params.id)
 
-    if(!Task) {
+    if(!task) {
 
         throw new Error("Wrong ID!")
     }
-    res.status(200).json(Task)
+    res.status(200).json(task)
 } )
 
 /**
@@ -99,7 +99,7 @@ const showTask = asyncHandler(async (req, res) => {
 const deleteTask = asyncHandler (async (req, res) => {
     // get input
     const inputId = req.params.id;
-    const Task = await Task.findById(inputId)
+    const task = await Task.findById(inputId)
 
     // validate 
     if(!Task) {
@@ -113,11 +113,11 @@ const deleteTask = asyncHandler (async (req, res) => {
     }
 
     // validate user & Task
-    if(Task.user.toString() !== req.user.id){
+    if(task.user.toString() !== req.user.id){
         res.status(401);
         throw new Error('User not auth');
     }
-    await Task.remove();
+    await task.remove();
     // action
     // deleteTask = await Task.findByIdAndDelete(inputId)
     res.status(200).json({ id: req.params.id })

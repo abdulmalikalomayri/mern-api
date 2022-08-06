@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
-const goalSchema = mongoose.Schema({
-    // handle connection between user & goals
-    //for every user has a goals
+const taskSchema = mongoose.Schema({
+    // handle connection between user & tasks
+    //for every user has a tasks
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -16,4 +16,4 @@ const goalSchema = mongoose.Schema({
     timestamps: true, 
 })
 
-module.exports = mongoose.model('Goal', goalSchema)
+module.exports = mongoose.model('Task', taskSchema)
